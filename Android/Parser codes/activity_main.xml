@@ -13,8 +13,9 @@
         android:layout_height="wrap_content"
         android:text="GET JSON"
         android:layout_gravity="center_horizontal"
-        android:onClick="getJson"
-        android:id="@+id/b1" />
+        android:onClick="getJSON"
+        android:id="@+id/b1"
+        />
 
     <Button
         android:id="@+id/b2"
@@ -22,8 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:onClick="parseJson"
-        android:text="PARSE JSON" />
+    android:onClick="parseJSON"
+    android:text="PARSE JSON"
+        />
 
     <TextView
         android:id="@+id/textView"
@@ -32,5 +34,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="JSON Appear here"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:textAppearance="?android:textAppearanceLarge"
+        />
+
 </LinearLayout>

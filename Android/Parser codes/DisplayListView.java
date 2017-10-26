@@ -8,9 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DisplayList extends AppCompatActivity
+public class DisplayListView extends AppCompatActivity
 {
 
+    String cpr, name, surname, age, type, phone, address, email;
     String json_string;
     JSONObject jsonObject;
     JSONArray jsonArray;
@@ -22,7 +23,7 @@ public class DisplayList extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.display_list_layout);
+        setContentView(R.layout.display_listview_layout);
         listView = (ListView)findViewById(R.id.listview);
         patientAdapter = new PatientAdapter(this, R.layout.row_layout);
         listView.setAdapter(patientAdapter);
@@ -30,21 +31,21 @@ public class DisplayList extends AppCompatActivity
         try
         {
             jsonObject = new JSONObject(json_string);
-            jsonArray  = new JSONObject(json_string).getJSONArray("server_response");
+            jsonArray = jsonObject.getJSONArray("server_response");
             int count = 0;
-            String cpr, name, surname, age, type, phone, address, email;
+
 
             while(count < jsonArray.length())
             {
                 JSONObject JO = jsonArray.getJSONObject(count);
-                cpr = JO.getString("cpr");
-                name = JO.getString("name");
-                surname = JO.getString("surname");
-                age = JO.getString("age");
-                type = JO.getString("type");
-                phone = JO.getString("phone");
-                address = JO.getString("address");
-                email = JO.getString("email");
+                cpr = JO.getString("CPR");
+                name = JO.getString("Name");
+                surname = JO.getString("Surname");
+                age = JO.getString("Age");
+                type = JO.getString("Type");
+                phone = JO.getString("Phone");
+                address = JO.getString("Address");
+                email = JO.getString("Email");
 
                 Patients patients = new Patients(cpr, name, surname, age, type, phone, address, email);
                 patientAdapter.add(patients);

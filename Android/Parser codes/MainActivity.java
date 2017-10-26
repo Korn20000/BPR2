@@ -18,7 +18,8 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity
 {
-    String j_string;
+    String JSON_STRING;
+    String json_string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
     }
 
-    public void getJson(View view)
+    public void getJSON(View view)
     {
         new BackgroundTask().execute();
     }
@@ -35,7 +36,6 @@ public class MainActivity extends AppCompatActivity
     class BackgroundTask extends AsyncTask<Void, Void, String>
     {
         String json_url;
-        String json_string;
 
         @Override
         protected void onPreExecute()
@@ -46,17 +46,17 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected String doInBackground(Void... voids)
         {
-            URL url = null;
+
             try {
-                url = new URL(json_url);
+                URL url = new URL(json_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder = new StringBuilder();
 
-                while((json_string = bufferedReader.readLine()) !=null)
+                while((JSON_STRING = bufferedReader.readLine()) !=null)
                 {
-                    stringBuilder.append(json_string + "\n");
+                    stringBuilder.append(JSON_STRING + "\n");
                 }
 
                 bufferedReader.close();
@@ -86,20 +86,20 @@ public class MainActivity extends AppCompatActivity
         {
             TextView textView = (TextView)findViewById(R.id.textView);
             textView.setText(result);
-            j_string = result;
+            json_string = result;
         }
     }
 
     public void parseJSON(View view)
     {
-        if(j_string == null)
+        if(json_string == null)
         {
             Toast.makeText(getApplicationContext(), "First Get JSON", Toast.LENGTH_LONG).show();
         }
         else
         {
-            Intent intent = new Intent(this, DisplayList.class);
-            intent.putExtra("json_data", j_string);
+            Intent intent = new Intent(this, DisplayListView.class);
+            intent.putExtra("json_data", json_string);
             startActivity(intent);
         }
     }

@@ -20,67 +20,83 @@ public class Patients
         this.setEmail(email);
     }
 
-    public String getCpr() {
+    public String getCpr()
+    {
         return cpr;
     }
 
-    public void setCpr(String cpr) {
+    public void setCpr(String cpr)
+    {
         this.cpr = cpr;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public String getSurname() {
+    public String getSurname()
+    {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public void setSurname(String surname)
+    {
         this.surname = surname;
     }
 
-    public String getAge() {
+    public String getAge()
+    {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(String age)
+    {
         this.age = age;
     }
 
-    public String getType() {
+    public String getType()
+    {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(String type)
+    {
         this.type = type;
     }
 
-    public String getPhone() {
+    public String getPhone()
+    {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(String phone)
+    {
         this.phone = phone;
     }
 
-    public String getAddress() {
+    public String getAddress()
+    {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(String address)
+    {
         this.address = address;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email)
+    {
         this.email = email;
     }
 }
