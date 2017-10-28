@@ -1,6 +1,7 @@
 package com.example.korn.parser;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,11 +19,11 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class History extends AppCompatActivity
+public class InsertData extends AppCompatActivity
 {
 
     EditText CPR, Date, Level;
-    Button dataSend;
+    Button InsertData;
     RequestQueue requestQueue;
     String insertToTable = "https://neuropterous-object.000webhostapp.com/Bachelor/json_get_Insert.php";
 
@@ -30,16 +31,16 @@ public class History extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.show_history);
+        setContentView(R.layout.insert_data);
 
         CPR = (EditText) findViewById(R.id.insertCPR);
         Date = (EditText) findViewById(R.id.insertDate);
         Level = (EditText) findViewById(R.id.insertLevel);
-        dataSend = (Button) findViewById(R.id.b4);
+        InsertData = (Button) findViewById(R.id.b4);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        dataSend.setOnClickListener(new View.OnClickListener()
+        InsertData.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -58,8 +59,8 @@ public class History extends AppCompatActivity
 
                     }
 
-            })
-            {
+                })
+                {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError
                     {

@@ -22,14 +22,12 @@ public class MainActivity extends AppCompatActivity
     String JSON_STRING;
     String json_string;
 
-    History hist = new History();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        hist.getClass();
     }
 
     public void getJSON(View view)
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPreExecute()
         {
-            json_url = "https://neuropterous-object.000webhostapp.com/Bachelor/json_get.php";
+            json_url = "https://neuropterous-object.000webhostapp.com/Bachelor/json_get_Insert.php";
         }
 
         @Override
@@ -68,11 +66,11 @@ public class MainActivity extends AppCompatActivity
                 httpURLConnection.disconnect();
                 return stringBuilder.toString().trim();
             }
-                catch (MalformedURLException e)
+            catch (MalformedURLException e)
             {
                 e.printStackTrace();
             }
-                catch (IOException e)
+            catch (IOException e)
             {
                 e.printStackTrace();
             }
@@ -110,7 +108,13 @@ public class MainActivity extends AppCompatActivity
 
     public void sendData(View view)
     {
-        Intent intent = new Intent(this, History.class);
+        Intent intent = new Intent(this, InsertData.class);
+        startActivity(intent);
+    }
+
+    public void histData(View view)
+    {
+        Intent intent = new Intent(this, ShowHistory.class);
         startActivity(intent);
     }
 }

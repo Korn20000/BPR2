@@ -5,48 +5,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.korn.parser.History"
+    tools:context="com.example.korn.parser.InsertData"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/insertCPR"
-        android:layout_width="382dp"
-        android:layout_height="67dp"
-        android:layout_gravity="center"
-        android:text="CPR"
-        android:textAppearance="?android:textAppearanceLarge"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
 
-    <EditText
-        android:id="@+id/insertDate"
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:layout_gravity="center"
-        android:layout_marginRight="8dp"
-        android:text="Date"
-        android:textAppearance="?android:textAppearanceLarge"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="106dp" />
 
-    <EditText
-        android:id="@+id/insertLevel"
-        android:layout_width="382dp"
-        android:layout_height="44dp"
+    <TextView
+        android:id="@+id/histShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Level"
+        android:layout_marginTop="20dp"
+        android:text="JSON history appear here"
         android:textAppearance="?android:textAppearanceLarge"
-        tools:layout_editor_absoluteY="62dp"
-        tools:layout_editor_absoluteX="0dp" />
+        />
 
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="To Database"
+        android:text="Choose date"
         android:layout_gravity="center_horizontal"
-        android:onClick="InsertData"
-        android:id="@+id/b4"
+        android:onClick="histDate"
+        android:id="@+id/b6"
         android:layout_marginTop="50dp"
         />
+
 
 </LinearLayout>
