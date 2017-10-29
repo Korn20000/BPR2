@@ -87,3 +87,6 @@ public class PatientAdapter extends ArrayAdapter
         TextView tx_CPR, tx_name, tx_surname, tx_age, tx_type, tx_phone, tx_address, tx_email;
     }
 }
+
+
+
