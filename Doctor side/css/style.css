@@ -31,7 +31,7 @@ input[type = "text"], input[type = "password"]
     width: 300px;
     font-size: 20px;
     margin-bottom: 20px;
-    padding-left: 10px
+    padding-left: 10px;
 }
 
 .btn-login
@@ -40,7 +40,3 @@ input[type = "text"], input[type = "password"]
     margin-bottom: 20px;
 }
 
-{
-    color: black;
-    
-}
