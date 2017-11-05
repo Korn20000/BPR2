@@ -2,15 +2,20 @@
 <html>
 <head>
     <title></title>
-    <link rel = "stylesheet" type = "text/css" href = "../css/style.css">
-    <!--<link rel = "stylesheet" type="text/css" href="css/font-awesome.css">-->
+    <link rel = "stylesheet" type = "text/css" href = "../style.css">
+    <link rel = "doctorList" href="https://neuropterous-object.000webhostapp.com/Bachelor/doctorList.php">
 </head>
+
+<noscript>
+    <meta http-equiv="refresh" content="0;https://neuropterous-object.000webhostapp.com/Bachelor/doctorList.php">
+</noscript>
     
 <script>
     function submitFunction()
     {
         var user = document.forms["loginForm"]["username"].value;
         var pass = document.forms["loginForm"]["password"].value;
+        var url = "https://neuropterous-object.000webhostapp.com/Bachelor/doctorList.php";
         
         if(user == null || user == "" || pass == null || pass == "")
         {
@@ -22,7 +27,23 @@
             {
                 if(pass == "12345")
                 {
-                     alert("Login successful");
+                    alert("Login successful");
+                    window.open("https://neuropterous-object.000webhostapp.com/Bachelor/doctorList.php");
+                    //window.close();
+                    //window.open("https://neuropterous-object.000webhostapp.com/Bachelor/doctorList.php", "self").close();
+                    //location.assign("https://neuropterous-object.000webhostapp.com/Bachelor/doctorList.php");
+                    /*if(typeof IE_firx != "undefined")
+                    {
+                        document.write("redirecting...");
+                        var refLink = document.createElement("a");
+                        refLink.href = url;
+                        document.body.appendChild(refLink);
+                    }
+                    else
+                    {
+                    window.location.replace(url);
+                    //window.open("");
+                    }*/
                 }
                 else
                 {
@@ -54,5 +75,6 @@
             <br><a href ="#">Forgot password?</a>
         </form>
     </div>
+    </form>
 </body>
 </html>
