@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <!-- This XML file works with the content to be displayed in the drawer-->
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/MainActivity"
+            android:icon="@drawable/ic_home_black_48px"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_history_black_48px"
+            android:title="History" />
+        <item
+            android:id="@+id/nav_graph"
+            android:icon="@drawable/ic_timeline_black_48px"
+            android:title="Graph" />
+
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_settings_black_48px"
+            android:title="Setting"/>
+
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_help_white_48px"
+            android:title="Help" />
+    </group>
+
+</menu>

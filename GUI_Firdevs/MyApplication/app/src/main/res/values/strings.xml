@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Home</string>
+    <string name="app_history"></string>
+    <string name="app_graph"></string>
+    <string name="app_setting"></string>
+    <string name="app_help"></string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_info">Info</string>
+</resources>
