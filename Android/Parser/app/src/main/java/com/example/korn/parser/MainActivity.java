@@ -1,11 +1,11 @@
 package com.example.korn.parser;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity
 {
     String JSON_STRING;
     String json_string;
+
 
 
     @Override
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPreExecute()
         {
-            json_url = "https://neuropterous-object.000webhostapp.com/Bachelor/json_get_Insert.php";
+            json_url = "https://neuropterous-object.000webhostapp.com/_OLD_Bachelor/json_get_Insert.php";
         }
 
         @Override
@@ -116,5 +117,6 @@ public class MainActivity extends AppCompatActivity
     {
         Intent intent = new Intent(this, ShowHistory.class);
         startActivity(intent);
+
     }
 }

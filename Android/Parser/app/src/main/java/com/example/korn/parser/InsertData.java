@@ -23,28 +23,28 @@ public class InsertData extends AppCompatActivity
 {
 
     EditText CPR, Date, Level;
-    Button InsertData;
-    RequestQueue requestQueue;
-    String insertToTable = "https://neuropterous-object.000webhostapp.com/Bachelor/json_get_Insert.php";
+                Button InsertData;
+                RequestQueue requestQueue;
+                String insertToTable = "https://neuropterous-object.000webhostapp.com/Bachelor/json_get_Insert.php";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.insert_data);
+                @Override
+                protected void onCreate(Bundle savedInstanceState)
+                {
+                    super.onCreate(savedInstanceState);
+                    setContentView(R.layout.insert_data);
 
-        CPR = (EditText) findViewById(R.id.insertCPR);
-        Date = (EditText) findViewById(R.id.insertDate);
-        Level = (EditText) findViewById(R.id.insertLevel);
-        InsertData = (Button) findViewById(R.id.b4);
+                    CPR = (EditText) findViewById(R.id.insertCPR);
+                    Date = (EditText) findViewById(R.id.insertDate);
+                    Level = (EditText) findViewById(R.id.insertLevel);
+                    InsertData = (Button) findViewById(R.id.b4);
 
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
+                    requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        InsertData.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
+                    InsertData.setOnClickListener(new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View view)
+                        {
                 StringRequest request = new StringRequest(Request.Method.POST, insertToTable, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response)
