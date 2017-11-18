@@ -8,12 +8,13 @@ if (isset($_POST['email'], $_POST['p'])) {
     $email = $_POST['email'];
     $password = $_POST['p']; // The hashed password.
  
-    if (login($email, $password, $mysqli) == true) {
+	$login_result = login($email, $password, $mysqli_doctors);
+    if ($login_result == 'ok') {
         // Login success 
         header('Location: ../../index.php');
     } else {
         // Login failed 
-        header('Location: ../../index.php?error=1');
+        header('Location: ../../index.php?status='.$login_result);
     }
 } else {
     // The correct POST variables were not sent to this page. 

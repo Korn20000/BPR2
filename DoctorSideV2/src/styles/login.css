@@ -61,3 +61,11 @@ p.labels {
 	font-size: 25px;
 	color: white;
 }
+
+p.status {
+	font-family: "Montserrat";
+	font-size: 20px;
+	color: #B22222;
+}
+
+.error { color: red; }

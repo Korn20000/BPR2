@@ -1,0 +1,24 @@
+CREATE TABLE Patient_DataV2 (
+	CPR int(10) NOT NULL UNIQUE,
+	First_Name varchar(100) NOT NULL,
+	Last_Name varchar(100) NOT NULL,
+	Age int(3) NOT NULL,
+	Diabetes_Type int(1) NOT NULL,
+	Phone int(11) NOT NULL,
+	Address varchar(100) NOT NULL,
+	Email varchar(100) NOT NULL,
+	PRIMARY KEY (CPR)
+);
+
+
+
+
+
+CREATE TABLE Patient_Measurement_HistoryV3 (
+    ID int(11) NOT NULL UNIQUE AUTO_INCREMENT,
+    fk_CPR int(10) NOT NULL,
+    Measured_Level DOUBLE(1,1) NOT NULL DEFAULT '0.0',
+	Date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (ID),
+    FOREIGN KEY (fk_CPR) REFERENCES Patient_DataV2(CPR)
+);

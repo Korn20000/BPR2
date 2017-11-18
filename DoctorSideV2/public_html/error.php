@@ -9,8 +9,8 @@ if (! $error) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Secure Login: Error</title>
-        <link rel="stylesheet" href="src/styles/main.css" />
+        <title>Log In Error</title>
+        <link rel="stylesheet" href="src/styles/login.css" />
     </head>
     <body>
         <h1>There was a problem</h1>
