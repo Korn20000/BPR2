@@ -1,25 +1,26 @@
-function model(adapter) {
+function model() {
 	"use strict";
 	
 	var patients = [];
 	var patientHistory = [];
+	var patientsUpdated = false;
 	
-	function loadPatients() {
-		console.log('patientsJSON:', adapter.patientsFromJSON());
-		patients = adapter.patientsFromJSON();
+	function setPatients(patientsArg) {
+		setPatientsUpdated(true);
+		patients = patientsArg;
 	}
 	
 	function getPatients() {
 		return patients;
 	}
 	
-	function loadPatientsHistory(cpr) {
-		patientHistory = adapter.patientHistory(cpr);
+	function getPatientsUpdated() {
+		return patientsUpdated;
 	}
 	
-	function getPatientsHistory() {
-		return patientHistory;
+	function setPatientsUpdated(yesNo) {
+		patientsUpdated = yesNo;
 	}
 	
-	return {loadPatients, getPatients, loadPatientsHistory, getPatientsHistory}
+	return {setPatients, getPatients, getPatientsUpdated, setPatientsUpdated};
 }

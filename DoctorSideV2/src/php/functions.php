@@ -149,10 +149,10 @@ function get_patients($mysqli_patients) {
 	if ($stmt = $mysqli_patients->prepare("SELECT * FROM `Patient_DataV2`")) {
 		$stmt->execute();
 		$result = $stmt->get_result();
-		$patients_array['patients'] = array();
+		$patients_array = array();
 		// Loop through result add all rows to output
 		while ($row = mysqli_fetch_assoc($result)) {
-			array_push($patients_array['patients'], $row);
+			array_push($patients_array, $row);
 		}
 		return json_encode($patients_array);
 	} else {
