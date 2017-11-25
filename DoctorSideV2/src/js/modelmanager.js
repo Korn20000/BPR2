@@ -1,30 +1,1 @@
-function modelmanager(model, adapter) {
-	"use scrict";
-	
-	function loadPatients() {
-	//console.log('patientsJSON:', adapter.fetchJSONResponseData());
-	try {
-		adapter.fetchJSONResponseData(adapter.ajaxGetPatients()).then(function(data) { 
-													console.log('loadPatients data:', data);
-													model.setPatients(JSON.parse(data));},
-													function(error) { console.log('Error in loadPatients:', error);
-																		model.setPatients("Error Loading Patients !");});
-	} catch (error) {
-		console.log('Error in loadPatients:', error);
-		}
-	}
-	
-	function getPatientsArray() {
-		return model.getPatients();
-	}
-	
-	function arePatientsUpdated() {
-		return model.getPatientsUpdated();
-	}
-	
-	function patientsUpdateFinish() {
-		return model.setPatientsUpdated(false);
-	}
-	
-	return {loadPatients, getPatientsArray, arePatientsUpdated, patientsUpdateFinish};
-}
+function modelmanager(model, adapter) {    "use scrict";    function loadPatients() {        //console.log('patientsJSON:', adapter.fetchJSONResponseData());        try {            adapter.fetchJSONResponseData(adapter.ajaxGetPatients()).then(function(data) {                    console.log('loadPatients data:', data);                    model.setPatients(JSON.parse(data));                },                function(error) {                    console.log('Error in loadPatients:', error);                    model.setPatients("Error Loading Patients !");                });        } catch (error) {            console.log('Error in loadPatients:', error);        }    }    function getPatientsArray() {        return model.getPatients();    }    function arePatientsUpdated() {        return model.getPatientsUpdated();    }    function patientsUpdateFinish() {        return model.setPatientsUpdated(false);    }    function loadPatientsHistory(cpr) {        //console.log('patientsJSON:', adapter.fetchJSONResponseData());        try {			//console.log('AjaxGetHistory in loadPatientsHistory is:', adapter.ajaxGetHistory());            adapter.fetchJSONResponseData(adapter.ajaxGetHistory(cpr)).then(function(historyData) {                    console.log('loadHistory data:', historyData);                    model.setPatientHistory(JSON.parse(historyData));                },                function(error) {                    console.log('Error in loadPatientsHistory:', error);                    model.setPatientHistory("Error Loading Patient's History !");                });        } catch (error) {            console.log('Error in loadPatientsHistory:', error);        }    }	//	function flushPatientHistoryArray() {//	model.setPatientHistory(null    function getPatientsArray() {        return model.getPatients();    }    function arePatientsUpdated() {        return model.getPatientsUpdated();    }    function patientsUpdateFinish() {        model.setPatientsUpdated(false);    }    function getPatientHistoryArray() {        return model.getPatientHistory();    }    function isHistoryUpdated() {        return model.getHistoryUpdated();    }    function historyUpdateFinish() {        model.setHistoryUpdated(false);    }    return {        loadPatients,        getPatientsArray,        arePatientsUpdated,        patientsUpdateFinish,        getPatientHistoryArray,        isHistoryUpdated,        historyUpdateFinish,		loadPatientsHistory    };}

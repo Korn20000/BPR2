@@ -32,8 +32,8 @@ sec_session_start();
     </head>
     <body>
 		<div class = "main_panel">
-			<a href="src/php/logout.php">log out</a>
-			<a href="#" onclick="controller.getPatientsFromModelManager();">load stuff</a>
+			<a class="button" id="outButton" href="src/php/logout.php">Logout</a>
+			<a class="button" id="reloadButton" href="#" onclick="window.location.reload();">Reload</a>
 			<div id="loadingList">
 				<p class="loadinText">Loading patients, please wait...</p>
 				<img class="loadingAnim" src="src/styles/imgs/loading.gif" alt="LOADING !">
