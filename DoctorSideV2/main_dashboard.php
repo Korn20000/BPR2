@@ -28,7 +28,8 @@ sec_session_start();
 		<script type="text/javascript" src="src/js/jszip.min.js"></script>
 		<script type="text/javascript" src="src/js/buttons.html5.min.js"></script>
 		<script type="text/javascript" src="src/js/pdfmake.min.js"></script>
-		<script type="text/javascript" src="src/js/vfs_fonts.js"></script>	
+		<script type="text/javascript" src="src/js/vfs_fonts.js"></script>
+		<script type="text/javascript" src="src/js/Chart.min.js"></script>
     </head>
     <body>
 		<div class = "main_panel">

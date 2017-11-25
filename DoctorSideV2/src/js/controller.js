@@ -60,6 +60,7 @@ function controller(view, modelmanager) {
 								//row.child(prepareHistoryFor(row.data().CPR)).show();
 								modelmanager.historyUpdateFinish();
 								makeHistoryDataTable(cpr, history);
+								drawGraph(cpr, history);
 								return;
 								}
 							}
@@ -154,12 +155,12 @@ function controller(view, modelmanager) {
 	function tableMaker(historyArray, CPR) {
 		var html = '<table id="' + CPR + '">';
 		html += '<tr>';
-		var count = 0;
+		//var count = 0;
 		for (var j in historyArray[0]) {
 			html += '<th>' + j + '</th>';
-			count++;
+			//count++;
 		}
-		html += '</tr>';
+		html += '</tr><canvas id = "graph_' + CPR+ '"></canvas>';
 		for (var i = 0; i < historyArray.length; i++) {
 			html += '<tr>';
 			for (var j in historyArray[i]) {
@@ -167,6 +168,7 @@ function controller(view, modelmanager) {
 			}
 		}
 		html += '</table>';
+		//<canvas id = "graph"></canvas>  
 		return html;
 		//onclick="view.sortTable(' + count + ')"
 	}
@@ -174,7 +176,47 @@ function controller(view, modelmanager) {
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-
+	
+	function drawGraph(cprID, history) {
+		var time = [];
+        var level = [];
+		
+		console.log("subtableIs: ", history);
+		
+        for(var i in history) {
+            time.push(history[i].Date);
+            level.push(history[i].Measured_Level);
+        }
+        
+        var chartdata = {
+            labels: time,
+            datasets : [
+                {
+                    label: 'Level',
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: 'rbga(59, 89, 152, 0.75)',
+                    borderColor: 'rbga(59, 89, 152, 1)',
+                    pointHoverBackgroundColor: 'rbga(59, 89, 152, 1)',
+                    pointHoverBorderColor: 'rbga(59, 89, 152, 1)',
+                    data: level
+                }
+            ]
+        };
+        
+        var ctx = $("#graph_" + cprID);
+        
+        var LineGraph = new Chart(ctx, {
+            type: 'line',
+            data: chartdata,
+			options: {
+				maintainAspectRatio: true,
+            }
+        });
+		//LineGraph.canvas.style.height = document.getElementById("chartjs-size-monitor").offsetHeight / 50;
+		//LineGraph.canvas.style.width = document.getElementById("chartjs-size-monitor").offsetWidth / 50;
+	}
+	
     return {
         getPatientsFromModelManager
     };
