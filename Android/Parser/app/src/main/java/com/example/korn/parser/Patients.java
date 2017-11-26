@@ -6,64 +6,62 @@ package com.example.korn.parser;
 
 public class Patients
 {
-    private String cpr, name, surname, age, type, phone, address, email;
+    private String ID, fk_CPR, Measured_Level, Date;
 
-    public Patients(String cpr, String name, String surname, String age, String type, String phone, String address, String email)
+    public Patients(String ID, String fk_CPR, String Measured_Level, String Date)
     {
-        this.setCpr(cpr);
-        this.setName(name);
-        this.setSurname(surname);
-        this.setAge(age);
-        this.setType(type);
+        this.setID(ID);
+        this.setfk_CPR(fk_CPR);
+        this.setMeasured_Level(Measured_Level);
+        this.setDate(Date);
+       /* this.setType(type);
         this.setPhone(phone);
         this.setAddress(address);
-        this.setEmail(email);
+        this.setEmail(email);*/
     }
 
-    public String getCpr()
+    public String getID()
     {
-        return cpr;
+        return ID;
     }
 
-    public void setCpr(String cpr)
+    public void setID(String ID)
     {
-        this.cpr = cpr;
+        this.ID = ID;
     }
 
-    public String getName()
+    public String getfk_CPR()
     {
-        return name;
+        return fk_CPR;
     }
 
-    public void setName(String name)
+    public void setfk_CPR(String fk_CPR)
     {
-        this.name = name;
+        this.fk_CPR = fk_CPR;
     }
 
-    public String getSurname()
+    public String getMeasured_Level()
     {
-        return surname;
+        return Measured_Level;
     }
 
-    public void setSurname(String surname)
+    public void setMeasured_Level(String Measured_Level)
     {
-        this.surname = surname;
+        this.Measured_Level = Measured_Level;
     }
 
-    public String getAge()
+    public String getDate()
     {
-        return age;
+        return Date;
     }
 
-    public void setAge(String age)
+    public void setDate(String Date)
     {
-        this.age = age;
+        this.Date = Date;
     }
 
-    public String getType()
-    {
-        return type;
-    }
+  /*  public String getType()
+
 
     public void setType(String type)
     {
@@ -98,5 +96,5 @@ public class Patients
     public void setEmail(String email)
     {
         this.email = email;
-    }
+    }*/
 }

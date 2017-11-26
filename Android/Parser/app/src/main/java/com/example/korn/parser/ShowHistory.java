@@ -23,7 +23,7 @@ public class ShowHistory extends AppCompatActivity
     int year_date, month_date, day_date;
     static final int DILOG_ID = 0;
     GraphView graphView;
-    sqLiteDatabase = databse class..... Peter fucked up
+
 
     LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[0]);
 
@@ -83,7 +83,7 @@ public class ShowHistory extends AppCompatActivity
     };
 
 
-    private DataPoint[] getDataPoint()
+ /*   private DataPoint[] getDataPoint()
     {
         String[] columns = ("xValues", "yValues");
         Cursor cursor = sqLiteDatabase.query("myTable", columns, null, null, null, null, null);
@@ -95,6 +95,5 @@ public class ShowHistory extends AppCompatActivity
             dp[i] = new DataPoint(cursor.getInt(0), cursor.getInt(1));
         }
         return dp;
-    }
-
+    }*/
 }

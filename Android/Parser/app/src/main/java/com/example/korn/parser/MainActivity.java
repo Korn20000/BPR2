@@ -5,9 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,14 +39,14 @@ public class MainActivity extends AppCompatActivity
         new BackgroundTask().execute();
     }
 
-    class BackgroundTask extends AsyncTask<Void, Void, String>
+    /*class BackgroundTask extends AsyncTask<Void, Void, String>
     {
         String json_url;
 
         @Override
         protected void onPreExecute()
         {
-            json_url = "https://neuropterous-object.000webhostapp.com/_OLD_Bachelor/json_get_Insert.php";
+            json_url = "https://neuropterous-object.000webhostapp.com/src/php/process_history.php";
         }
 
         @Override
@@ -91,7 +94,63 @@ public class MainActivity extends AppCompatActivity
             textView.setText(result);
             json_string = result;
         }
+    }*/
+
+    class BackgroundTask extends AsyncTask<String... args>
+    {
+        // Building Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        // getting JSON string from URL
+        JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+
+        // Check your log cat for JSON reponse
+            Log.d("All Products: ", json.toString());
+
+            try {
+        // Checking for SUCCESS TAG
+        int success = json.getInt(TAG_SUCCESS);
+
+        if (success == 1) {
+            // products found
+            // Getting Array of Products
+            products = json.getJSONArray(TAG_PRODUCTS);
+
+            // looping through All Products
+            for (int i = 0; i < products.length(); i++) {
+                JSONObject c = products.getJSONObject(i);
+
+                // Storing each json item in variable
+                String id = c.getString(TAG_PID);
+                String name = c.getString(TAG_NAME);
+
+                // creating new HashMap
+                HashMap<String, String> map = new HashMap<String, String>();
+
+                // adding each child node to HashMap key => value
+                map.put(TAG_PID, id);
+                map.put(TAG_NAME, name);
+
+                // adding HashList to ArrayList
+                productsList.add(map);
+            }
+        } else {
+            // no products found
+            // Launch Add New product Activity
+            Intent i = new Intent(getApplicationContext(),
+                    NewProductActivity.class);
+            // Closing all previous activities
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+        }
+    } catch (JSONException e) {
+        e.printStackTrace();
     }
+
+            return null;
+    }
+    }
+
+
 
     public void parseJSON(View view)
     {
@@ -120,3 +179,5 @@ public class MainActivity extends AppCompatActivity
 
     }
 }
+
+

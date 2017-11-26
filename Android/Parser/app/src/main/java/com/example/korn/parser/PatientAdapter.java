@@ -71,14 +71,14 @@ public class PatientAdapter extends ArrayAdapter
         }
 
         Patients patients = (Patients)this.getItem(position);
-        patientHolder.tx_CPR.setText(patients.getCpr());
-        patientHolder.tx_name.setText(patients.getName());
-        patientHolder.tx_surname.setText(patients.getSurname());
-        patientHolder.tx_age.setText(patients.getAge());
-        patientHolder.tx_type.setText(patients.getType());
+        patientHolder.tx_CPR.setText(patients.getID());
+        patientHolder.tx_name.setText(patients.getfk_CPR());
+        patientHolder.tx_surname.setText(patients.getMeasured_Level());
+        patientHolder.tx_age.setText(patients.getDate());
+        /*patientHolder.tx_type.setText(patients.getType());
         patientHolder.tx_phone.setText(patients.getPhone());
         patientHolder.tx_address.setText(patients.getAddress());
-        patientHolder.tx_email.setText(patients.getEmail());
+        patientHolder.tx_email.setText(patients.getEmail());*/
         return row;
     }
 

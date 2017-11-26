@@ -11,7 +11,7 @@ import org.json.JSONObject;
 public class DisplayListView extends AppCompatActivity
 {
 
-    String cpr, name, surname, age, type, phone, address, email;
+    String ID, fk_CPR, Measured_Level, Date;
     String json_string;
     JSONObject jsonObject;
     JSONArray jsonArray;
@@ -38,16 +38,16 @@ public class DisplayListView extends AppCompatActivity
             while(count < jsonArray.length())
             {
                 JSONObject JO = jsonArray.getJSONObject(count);
-                cpr = JO.getString("CPR");
-                name = JO.getString("Name");
-                surname = JO.getString("Surname");
-                age = JO.getString("Age");
-                type = JO.getString("Type");
+                ID = JO.getString("ID");
+                fk_CPR = JO.getString("fk_CPR");
+                Measured_Level = JO.getString("Measured_Level");
+                Date = JO.getString("Date");
+               /* type = JO.getString("Type");
                 phone = JO.getString("Phone");
                 address = JO.getString("Address");
                 email = JO.getString("Email");
-
-                Patients patients = new Patients(cpr, name, surname, age, type, phone, address, email);
+                */
+                Patients patients = new Patients(ID, fk_CPR, Measured_Level, Date);
                 patientAdapter.add(patients);
                 count++;
             }
