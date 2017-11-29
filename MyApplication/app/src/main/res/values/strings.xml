@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Home</string>
+    <string name="app_history">History</string>
+    <string name="app_graph">Graph</string>
+    <string name="app_setting">Setting</string>
+    <string name="app_help">Help</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_info">Info</string>
+    <string name="action_filter">Filter</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_write">Write A Note</string>
+    <string name="filter_filter">Filter</string>
+    <string name="filter_toDate">To date</string>
+    <string name="filter_clickToAddDate">Click to add a To date</string>
+    <string name="filter_frmDate">From date</string>
+    <string name="filter_clickToAddFromDate">Click to add a From date</string>
+    <string name="filter_sort">Sort</string>
+    <string name="filter_value">Value / Level</string>
+    <string name="filter_date">Date</string>
+    <string name="filter_btnAscending">Ascending</string>
+    <string name="filter_btnDescending">Descending</string>
+    <string name="filter_btnConfirm">Confirm</string>
+    <string name="filter_btnCancel">Cancel</string>
+
+
+</resources>
