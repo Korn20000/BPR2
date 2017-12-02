@@ -27,4 +27,6 @@
     <string name="filter_btnCancel">Cancel</string>
 
 
+    <string name="Measured_Level"> Measured level</string>
+    <string name="Date">Date</string>
 </resources>

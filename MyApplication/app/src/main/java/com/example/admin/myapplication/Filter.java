@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -29,15 +30,16 @@ import static android.content.ContentValues.TAG;
 
 public class Filter extends Activity implements View.OnClickListener {
 
-    TextView tvToDate, tvFromDate;
+   TextView tvToDate, tvFromDate;
+
     DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
     int callerId = -1;
-    //  public static final String DATE_FORMAT = "yyyy/MM/dd";
+
     public static final String DATE_FORMAT = "EEE, MMM d, yyyy";
 
     private Context ctx = this;
 
-    Button btOk;
+    Button btnCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,27 +48,22 @@ public class Filter extends Activity implements View.OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //set the layout
         setContentView(R.layout.activity_filter);
-        //set the button
 
 
-        tvToDate = (TextView) findViewById(R.id.tvToDate);
+        tvToDate = (TextView) findViewById(R.id.startDateDisplay);
         tvToDate.setOnClickListener(this);
 
-        tvFromDate = (TextView) findViewById(R.id.tvFromDate);
+        tvFromDate = (TextView) findViewById(R.id.endDateDisplay);
         tvFromDate.setOnClickListener(this);
 
 
        TextView tvFilter = (TextView) findViewById(R.id.TextFilter);
        tvFilter.setPaintFlags(tvFilter.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-      //  TextView tvDate = (TextView) findViewById(R.id.TextDate);
-      //  tvDate.setPaintFlags(tvFilter.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-
-        btOk = (Button) findViewById(R.id.btnCancel);
-        btOk.setOnClickListener(new Button.OnClickListener() {
+        btnCancel = (Button) findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //do something
                 finish();
@@ -74,30 +71,33 @@ public class Filter extends Activity implements View.OnClickListener {
         });
     }
 
-    @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tvToDate:
+            case R.id.startDateDisplay:
                 TextView et = (TextView) view;
                 showDatePickerDialog(view.getId(), et.getText().toString().trim());
                 break;
-            case R.id.tvFromDate:
+            case R.id.endDateDisplay:
                 TextView et1 = (TextView) view;
                 showDatePickerDialog(view.getId(), et1.getText().toString().trim());
         }
 
     }
 
-    public void showDatePickerDialog(int callerId, String dateText) {
+    public void showDatePickerDialog(int callerId, String dateText)
+    {
         this.callerId = callerId;
         Date date = null;
 
-        try {
+        try
+        {
             if (dateText.equals(""))
                 date = new Date();
             else
                 date = dateFormatter.parse(dateText);
-        } catch (Exception exp) {
+        } catch (Exception exp)
+
+        {
             // In case of expense initializa date with new Date
             date = new Date();
         }
@@ -107,21 +107,27 @@ public class Filter extends Activity implements View.OnClickListener {
         int month = calendar.get(Calendar.MONTH); // calendar month 0-11
         int day = calendar.get(Calendar.DATE);
         // date picker initialization
-        DatePickerDialog datePicker = new DatePickerDialog(ctx, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+        DatePickerDialog datePicker = new DatePickerDialog(ctx, new DatePickerDialog.OnDateSetListener()
 
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
                 handleOnDateSet(year, month, day);
+
             }
         }, year, month, day);
         datePicker.setTitle("Pick a date");
-        datePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "Ok", datePicker);
-        datePicker.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+        datePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "Confirm", datePicker);
+        datePicker.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener()
+
+        {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 // Cancel button clicked
             }
         });
+            datePicker.getDatePicker().setMaxDate(new Date().getTime());
         datePicker.show();
     }
 
@@ -130,14 +136,16 @@ public class Filter extends Activity implements View.OnClickListener {
         String formatedDate = dateFormatter.format(date);
 
         switch (callerId) {
-            case R.id.tvToDate:
+            case R.id.startDateDisplay:
                 tvToDate.setText(formatedDate);
+
                 break;
-            case R.id.tvFromDate:
+            case R.id.endDateDisplay:
                 tvFromDate.setText(formatedDate);
-                break;
+
         }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

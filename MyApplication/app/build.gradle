@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.admin.myapplication"
-        minSdkVersion 19
+        minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -16,10 +16,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -27,8 +31,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     //library for the pulse view
     compile 'com.github.devlight.pulseview:library:1.0.2'
-
+    implementation files('libs/fluent-hc-4.5.3.jar')
+    implementation files('libs/httpclient-4.5.3.jar')
+    implementation files('libs/httpclient-cache-4.5.3.jar')
+    implementation files('libs/httpclient-win-4.5.3.jar')
+    implementation files('libs/httpcore-4.4.6.jar')
+    implementation files('libs/httpmime-4.5.3.jar')
+    implementation files('libs/jna-4.1.0.jar')
+    implementation files('libs/jna-platform-4.1.0.jar')
 }

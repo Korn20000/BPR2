@@ -20,10 +20,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import android.content.Context;
+import android.util.Log;
+import android.widget.ListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+
 import com.gigamole.library.PulseView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+
 
     PulseView pulseView;
     ProgressBar myProgressBar;
@@ -69,6 +83,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     public class MyAsyncTask extends AsyncTask<Void, Integer, Void> {
@@ -213,4 +228,6 @@ public class MainActivity extends AppCompatActivity
       drawer.closeDrawer(GravityCompat.START);
       return true;
   }
+
 }
+

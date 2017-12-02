@@ -1,6 +1,8 @@
 package com.example.admin.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,8 +10,22 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Admin on 09/11/2017.
@@ -17,6 +33,12 @@ import android.view.MenuItem;
 
 public class History extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener  {
+
+    public static TextView textView1;
+    ListView patientInformationtListView;
+    ProgressBar historyProgressBar;
+
+    String ServerURL = "https://neuropterous-object.000webhostapp.com/src/php/process_history.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +55,14 @@ public class History extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        patientInformationtListView = (ListView) findViewById(R.id.measureList);
+
+        historyProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        new History.GetHttpResponse(History.this).execute();
+
     }
 
 
@@ -92,12 +122,12 @@ public class History extends AppCompatActivity
         int id = item.getItemId();
 
 
-      /*  if (id == R.id.MainActivity) {
+        if (id == R.id.MainActivity) {
             Intent searchIntent = new Intent(History.this, MainActivity.class);
             startActivity(searchIntent);
             overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
 
-        } else */ if (id == R.id.nav_graph) {
+        } else if (id == R.id.nav_graph) {
             Intent searchIntent = new Intent(History.this, Graph.class);
             startActivity(searchIntent);
             overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
@@ -117,5 +147,113 @@ public class History extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private class GetHttpResponse extends AsyncTask<Void, Void, Void> {
+        public Context context;
+
+        String ResultHolder;
+
+        List<PatientInformation> patientInformationList;
+
+        String data = "";
+        String dataParsed = "";
+        String singleDataParsed = "";
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+
+        public GetHttpResponse(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            HttpServicesClass httpServiceObject = new HttpServicesClass(ServerURL);
+            try {
+                httpServiceObject.AddParam("actionId", "disp_pat_history_json");
+                httpServiceObject.AddParam("CPRNo", "3754375");
+                httpServiceObject.ExecutePostRequest();
+
+                if (httpServiceObject.getResponseCode() == 200) {
+                    ResultHolder = httpServiceObject.getResponse();
+
+                    Log.d("JSON is: ", ResultHolder);
+
+
+                    //System.out.println("String is: " + ResultHolder.replaceAll("\"", ""));
+                    if (ResultHolder != null) {
+                        JSONArray jsonArray = null;
+                        JSONObject jsonObject = null;
+
+
+                        try {
+                            String resultEscaped = ResultHolder.replaceAll("\\\\", "");
+                            resultEscaped = resultEscaped.substring(1, resultEscaped.length() - 1);
+                            Log.d("EscapedString: ", resultEscaped);
+
+                            //jsonObject = new JSONObject(resultEscaped);
+                            //Log.d("jsonObject is: ", jsonObject.toString());
+
+                            jsonArray = new JSONArray(resultEscaped);
+                            Log.d("jsonArray is: ", jsonArray.toString());
+                            //jsonArray.toString().replaceAll("\"","");
+
+                            //  ResultHolder.replaceAll("\"","");
+
+                            patientInformationList = new ArrayList<PatientInformation>();
+                            PatientInformation patientInformation;
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                patientInformation = new PatientInformation();
+
+                                jsonObject = jsonArray.getJSONObject(i);
+
+
+                                //patientInformation.setId(jsonObject.getInt("ID"));
+                                //patientInformation.setCpr(jsonObject.getInt("fk_CPR"));
+                                patientInformation.setMeasuredLevel(jsonObject.getDouble("Measured_Level"));
+                                patientInformation.setDate(dateFormat.parse(jsonObject.getString("Date")));
+                                //subject.setSimple(dateFormat.parse(jsonObject.getString("Date")));
+                                //jsonArray = new JSONArray(Subject.SubjectName);
+
+                                //java.sql.Timestamp var_name = jsonObject.getString("Date");
+                                patientInformationList.add(patientInformation);
+                            }
+                        } catch (JSONException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                } else {
+                    Toast.makeText(context, httpServiceObject.getErrorMessage(), Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result)
+
+        {
+            historyProgressBar.setVisibility(View.GONE);
+
+
+            patientInformationtListView.setVisibility(View.VISIBLE);
+
+            if (patientInformationList != null) {
+                ListAdapterClass adapter = new ListAdapterClass(context, patientInformationList);
+
+                patientInformationtListView.setAdapter(adapter);
+            }
+        }
     }
 }

@@ -91,12 +91,12 @@ public class Graph extends AppCompatActivity
         int id = item.getItemId();
 
 
-       /* if (id == R.id.MainActivity) {
+       if (id == R.id.MainActivity) {
             Intent searchIntent = new Intent(Graph.this, MainActivity.class);
             startActivity(searchIntent);
             overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
 
-        }else*/ if (id == R.id.nav_history) {
+        }else if (id == R.id.nav_history) {
             Intent searchIntent = new Intent(Graph.this, History.class);
             startActivity(searchIntent);
             overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
