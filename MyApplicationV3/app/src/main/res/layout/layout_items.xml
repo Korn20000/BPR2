@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/bloodLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Items"
+            android:textColor="#fff"
+            android:textSize="25dp"
+
+            />
+
+        <TextView
+            android:id="@+id/dateLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/bloodLevel"
+            android:padding="10dp"
+            android:text="Items"
+            android:textColor="#ffff"
+            android:textSize="25dp" />
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
